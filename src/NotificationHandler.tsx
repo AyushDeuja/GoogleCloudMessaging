@@ -3,7 +3,7 @@ import messaging, {
 } from '@react-native-firebase/messaging';
 import { Alert } from 'react-native';
 
-export async function requestUserPermission(): Promise<void> {
+export const requestUserPermission = async (): Promise<void> => {
   const authStatus = await messaging().requestPermission();
   const enabled =
     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
@@ -13,7 +13,7 @@ export async function requestUserPermission(): Promise<void> {
     console.log('Authorization status:', authStatus);
     await getFcmToken();
   }
-}
+};
 
 const getFcmToken = async (): Promise<void> => {
   try {
