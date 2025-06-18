@@ -8,8 +8,9 @@ import {
   ThemeProvider,
 } from 'react-native-magnus';
 import CustomInput from './components/CustomInput';
+import CustomButton from './components/CustomButton';
 
-const theme = {
+export const theme = {
   colors: {
     bgColor: '#5C95F8',
     btnColor: '#51E6A6',
@@ -41,6 +42,7 @@ const LoginMagnus = () => {
             {/* <TextInput placeholder="email" style={styles.input} /> */}
             <CustomInput placeholder="Enter your email" />
             <CustomInput placeholder="Enter your password" />
+            <CustomButton />
           </Div>
 
           <Div>
