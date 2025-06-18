@@ -1,6 +1,6 @@
 import { Dimensions, SafeAreaView, StyleSheet } from 'react-native';
 import React from 'react';
-import { Div, Icon, StatusBar, Text, ThemeProvider } from 'react-native-magnus';
+import { Div, StatusBar, Icon, Text, ThemeProvider } from 'react-native-magnus';
 import CustomInput from './components/CustomInput';
 import CustomButton from './components/CustomButton';
 
@@ -23,7 +23,13 @@ const LoginMagnus = () => {
           alignItems="center"
           justifyContent="center"
         >
-          <Div>
+          {/* <Icon
+            name="archive"
+            fontFamily="Feather"
+            fontSize="lg"
+            // color="black"
+          /> */}
+          <Div w={'100%'} px={10}>
             <Text
               color="white"
               fontWeight="bold"

@@ -27,7 +27,6 @@ const CustomInput = ({
       value={value}
       onChangeText={onChangeText}
       secureTextEntry={secureTextEntry}
-      w={Dimensions.get('window').width - 30}
       h={50}
       rounded="lg"
       fontSize="lg"
@@ -37,10 +36,11 @@ const CustomInput = ({
         isPassword && (
           <TouchableOpacity onPress={() => setShowPassword(prev => !prev)}>
             <Icon
-              name={showPassword ? 'eye' : 'eye-off'}
-              fontFamily="Feather"
+              name={showPassword ? 'eye' : 'eye-invisible'}
+              // name="eye"
+              fontFamily={'AntDesign'}
               fontSize="lg"
-              color="gray700"
+              color="black"
             />
           </TouchableOpacity>
         )

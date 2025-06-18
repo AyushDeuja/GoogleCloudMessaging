@@ -12,7 +12,7 @@ const CustomButton = ({ content }: ButtonProps) => {
       <Button
         h={'50'}
         px={'10'}
-        w={Dimensions.get('window').width - 30}
+        w={'100%'}
         rounded={'lg'}
         fontWeight="bold"
         bg="btnColor"

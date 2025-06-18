@@ -21,8 +21,8 @@ const App = () => {
     //   <Text style={styles.title}>React Native Firebase Push Notification</Text>
     //   <Text style={styles.subtitle}>FCM is now initialized 🎉</Text>
     // </View>
-    <Splice />
-    // <LoginMagnus />
+    // <Splice />
+    <LoginMagnus />
   );
 };
 
