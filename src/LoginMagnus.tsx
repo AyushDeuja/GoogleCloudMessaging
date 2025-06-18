@@ -1,6 +1,6 @@
 import { Dimensions, SafeAreaView, StyleSheet } from 'react-native';
 import React from 'react';
-import { Div, StatusBar, Text, ThemeProvider } from 'react-native-magnus';
+import { Div, Icon, StatusBar, Text, ThemeProvider } from 'react-native-magnus';
 import CustomInput from './components/CustomInput';
 import CustomButton from './components/CustomButton';
 
@@ -35,7 +35,7 @@ const LoginMagnus = () => {
             </Text>
             {/* <TextInput placeholder="email" style={styles.input} /> */}
             <CustomInput placeholder="Enter your email" />
-            <CustomInput placeholder="Enter your password" />
+            <CustomInput placeholder="Enter your password" type="password" />
             <CustomButton content="Log In" />
           </Div>
 
