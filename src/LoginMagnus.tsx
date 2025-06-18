@@ -7,6 +7,7 @@ import {
   Text,
   ThemeProvider,
 } from 'react-native-magnus';
+import CustomInput from './components/CustomInput';
 
 const theme = {
   colors: {
@@ -38,15 +39,7 @@ const LoginMagnus = () => {
               Login
             </Text>
             {/* <TextInput placeholder="email" style={styles.input} /> */}
-            <Input
-              placeholder="Enter your email"
-              style={{ width: Dimensions.get('window').width - 30 }}
-              h={'50'}
-              rounded={'lg'}
-              fontSize={'lg'}
-              px={'10'}
-              mb={'20'}
-            />
+            <CustomInput placeholder="Enter your email" />
           </Div>
 
           <Div>
