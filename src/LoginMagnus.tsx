@@ -1,6 +1,12 @@
 import { Dimensions, SafeAreaView, StyleSheet, TextInput } from 'react-native';
 import React from 'react';
-import { Div, StatusBar, Text, ThemeProvider } from 'react-native-magnus';
+import {
+  Div,
+  Input,
+  StatusBar,
+  Text,
+  ThemeProvider,
+} from 'react-native-magnus';
 
 const theme = {
   colors: {
@@ -32,6 +38,15 @@ const LoginMagnus = () => {
               Login
             </Text>
             {/* <TextInput placeholder="email" style={styles.input} /> */}
+            <Input
+              placeholder="Enter your email"
+              style={{ width: Dimensions.get('window').width - 30 }}
+              h={'50'}
+              rounded={'lg'}
+              fontSize={'lg'}
+              px={'10'}
+              mb={'20'}
+            />
           </Div>
 
           <Div>
