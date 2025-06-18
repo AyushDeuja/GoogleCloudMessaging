@@ -1,20 +1,21 @@
 // CustomInput.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Dimensions } from 'react-native';
 import { Input } from 'react-native-magnus';
 
-interface CustomInputProps {
+interface InputProps {
   placeholder?: string;
   value?: string;
   onChangeText?: (text: string) => void;
 }
+const [showPassword, setShowPassword] = useState(false);
 
 const CustomInput = ({
   placeholder,
   value,
   onChangeText,
   ...rest
-}: CustomInputProps) => {
+}: InputProps) => {
   return (
     <Input
       placeholder={placeholder}
