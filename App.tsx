@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import {
   NotificationListener,
   requestUserPermission,
 } from './src/NotificationHandler';
+import LoginMagnus from './src/LoginMagnus';
 
 const App = () => {
   useEffect(() => {
@@ -15,10 +16,11 @@ const App = () => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>React Native Firebase Push Notification</Text>
-      <Text style={styles.subtitle}>FCM is now initialized 🎉</Text>
-    </SafeAreaView>
+    // <View style={styles.container}>
+    //   <Text style={styles.title}>React Native Firebase Push Notification</Text>
+    //   <Text style={styles.subtitle}>FCM is now initialized 🎉</Text>
+    // </View>
+    <LoginMagnus />
   );
 };
 
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'white',
     padding: 16,
   },
   title: {
@@ -39,6 +41,6 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
-    color: '#444',
+    color: 'gray',
   },
 });
