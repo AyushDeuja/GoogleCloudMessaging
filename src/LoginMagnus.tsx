@@ -40,6 +40,7 @@ const LoginMagnus = () => {
             </Text>
             {/* <TextInput placeholder="email" style={styles.input} /> */}
             <CustomInput placeholder="Enter your email" />
+            <CustomInput placeholder="Enter your password" />
           </Div>
 
           <Div>

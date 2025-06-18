@@ -9,12 +9,12 @@ interface CustomInputProps {
   onChangeText?: (text: string) => void;
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({
+const CustomInput = ({
   placeholder,
   value,
   onChangeText,
   ...rest
-}) => {
+}: CustomInputProps) => {
   return (
     <Input
       placeholder={placeholder}
@@ -25,7 +25,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
       rounded="lg"
       fontSize="lg"
       px="10"
-      mb="20"
+      mb="10"
       {...rest}
     />
   );
