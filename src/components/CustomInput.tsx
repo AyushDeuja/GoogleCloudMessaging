@@ -37,8 +37,8 @@ const CustomInput = ({
         isPassword && (
           <TouchableOpacity onPress={() => setShowPassword(prev => !prev)}>
             <Icon
-              name={showPassword ? 'eye' : 'eye-slash'}
-              fontFamily="FontAwesome5"
+              name={showPassword ? 'eye' : 'eye-off'}
+              fontFamily="Feather"
               fontSize="lg"
               color="gray700"
             />

@@ -5,6 +5,7 @@ import {
   requestUserPermission,
 } from './src/NotificationHandler';
 import LoginMagnus from './src/LoginMagnus';
+import Splice from './src/Splice';
 
 const App = () => {
   useEffect(() => {
@@ -20,7 +21,8 @@ const App = () => {
     //   <Text style={styles.title}>React Native Firebase Push Notification</Text>
     //   <Text style={styles.subtitle}>FCM is now initialized 🎉</Text>
     // </View>
-    <LoginMagnus />
+    <Splice />
+    // <LoginMagnus />
   );
 };
 
