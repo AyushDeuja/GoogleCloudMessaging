@@ -1,4 +1,5 @@
 import {
+  Alert,
   Dimensions,
   SafeAreaView,
   StyleSheet,
@@ -9,14 +10,34 @@ import { Div, StatusBar, Icon, Text, ThemeProvider } from 'react-native-magnus';
 import CustomInput from './components/CustomInput';
 import CustomButton from './components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import { axiosInstance } from './utils/axiosInstance';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginMagnus = () => {
   const navigation = useNavigation<any>();
-  const [email, setEmail] = useState('');
-  const [mobile, setMobile] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const loginUser = async () => {};
+  const loginUser = async () => {
+    if (!username.trim() || !password.trim()) {
+      Alert.alert('Missing Fields', 'All fields are required!');
+      return;
+    }
+    try {
+      const response = await axiosInstance.post('/auth/login', {
+        username,
+        password,
+      });
+      const token = response.data.token;
+      await AsyncStorage.setItem('token', token);
+      navigation.navigate('Home');
+    } catch (err: any) {
+      Alert.alert(
+        'Login failed',
+        err?.response?.data?.message || 'Please try again.',
+      );
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -40,8 +61,8 @@ const LoginMagnus = () => {
           </Text>
           <CustomInput
             placeholder="Enter your email or mobile"
-            value={email || mobile}
-            onChangeText={setEmail || setMobile}
+            value={username}
+            onChangeText={setUsername}
           />
           <CustomInput
             placeholder="Enter your password"
