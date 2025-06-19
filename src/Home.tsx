@@ -1,10 +1,10 @@
-import { View, Text } from 'react-native';
 import React from 'react';
+import { View, Text } from 'react-native';
 
 const Home = () => {
   return (
-    <View style={{ backgroundColor: 'white', height: '100%' }}>
-      <Text>This is home</Text>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Welcome to Home Screen!</Text>
     </View>
   );
 };

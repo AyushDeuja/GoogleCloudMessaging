@@ -1,15 +1,11 @@
-import {
-  Alert,
-  SafeAreaView,
-  TouchableHighlight,
-  TouchableOpacity,
-} from 'react-native';
+import { Alert, SafeAreaView, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { Div, StatusBar, Text, ThemeProvider } from 'react-native-magnus';
 import CustomInput from './components/CustomInput';
 import CustomButton from './components/CustomButton';
 import { axiosInstance } from './utils/axiosInstance';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 export const theme = {
   colors: {
@@ -17,15 +13,15 @@ export const theme = {
     btnColor: '#51E6A6',
   },
 };
+
 const SignUp = () => {
+  const navigation = useNavigation<any>();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
 
   const registerUser = async () => {
-    console.log({ name, email, mobile, password }); // 👈 Debug log
-
     if (!name.trim() || !email.trim() || !mobile.trim() || !password.trim()) {
       Alert.alert('Missing Fields', 'All fields are required!');
       return;
@@ -40,7 +36,7 @@ const SignUp = () => {
       });
       const token = response.data.token;
       await AsyncStorage.setItem('token', token);
-      Alert.alert('Success', 'Registration successful!');
+      navigation.navigate('Home');
     } catch (err: any) {
       console.log(err?.response?.data || err.message);
       Alert.alert(
@@ -54,13 +50,7 @@ const SignUp = () => {
     <ThemeProvider theme={theme}>
       <StatusBar backgroundColor="bgColor" barStyle="light-content" />
       <SafeAreaView style={{ flex: 1 }}>
-        <Div
-          bg="bgColor"
-          h="100%"
-          flex={1}
-          alignItems="center"
-          justifyContent="center"
-        >
+        <Div bg="bgColor" flex={1} alignItems="center" justifyContent="center">
           <Div w={'100%'} px={20}>
             <Text
               color="white"
@@ -71,7 +61,7 @@ const SignUp = () => {
             >
               Sign Up
             </Text>
-            {/* <TextInput placeholder="email" style={styles.input} /> */}
+
             <CustomInput
               placeholder="Enter your Name"
               value={name}
@@ -93,17 +83,13 @@ const SignUp = () => {
               value={password}
               onChangeText={setPassword}
             />
-            <CustomButton
-              content="Sign Up"
-              onPress={() => Alert.alert('Test', 'It works')}
-            />
+            <CustomButton content="Sign Up" onPress={registerUser} />
           </Div>
 
           <Div pt="xl" flexDir="row" alignItems="center">
             <Text color="white">Already have an account?</Text>
-
             <TouchableOpacity
-              onPress={() => console.log('LogIn pressed')}
+              onPress={() => navigation.navigate('Login')}
               activeOpacity={0.6}
             >
               <Text

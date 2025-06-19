@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
-import {
-  NotificationListener,
-  requestUserPermission,
-} from './src/NotificationHandler';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginMagnus from './src/LoginMagnus';
+import {
+  requestUserPermission,
+  NotificationListener,
+} from './src/NotificationHandler';
 import Splash from './src/Splash';
+import LoginMagnus from './src/LoginMagnus';
 import SignUp from './src/SignUp';
+import Home from './src/Home'; // ➤ create this screen
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
-  useEffect(() => {
-    // Ask user for permission and get FCM token
-    requestUserPermission();
 
-    // Setup all FCM listeners
+  useEffect(() => {
+    requestUserPermission();
     NotificationListener();
   }, []);
 
@@ -27,34 +28,20 @@ const App = () => {
   }, []);
 
   return (
-      {/* <View style={styles.container}>
-      <Text style={styles.title}>React Native Firebase Push Notification</Text>
-      <Text style={styles.subtitle}>FCM is now initialized 🎉</Text>
-    </View>
-    <Splice />
-    <LoginMagnus />
-    showSplash ? <Splash /> : <LoginMagnus /> */}
-      <SignUp />
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {showSplash ? (
+          <Stack.Screen name="Splash" component={Splash} />
+        ) : (
+          <>
+            <Stack.Screen name="SignUp" component={SignUp} />
+            <Stack.Screen name="Login" component={LoginMagnus} />
+            <Stack.Screen name="Home" component={Home} />
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 16,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: 'gray',
-  },
-});
