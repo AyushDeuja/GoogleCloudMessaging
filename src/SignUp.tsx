@@ -1,4 +1,5 @@
 import {
+  Alert,
   SafeAreaView,
   TouchableHighlight,
   TouchableOpacity,
@@ -7,6 +8,8 @@ import React, { useState } from 'react';
 import { Div, StatusBar, Text, ThemeProvider } from 'react-native-magnus';
 import CustomInput from './components/CustomInput';
 import CustomButton from './components/CustomButton';
+import { axiosInstance } from './utils/axiosInstance';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const theme = {
   colors: {
@@ -19,6 +22,33 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
+
+  const registerUser = async () => {
+    console.log({ name, email, mobile, password }); // 👈 Debug log
+
+    if (!name.trim() || !email.trim() || !mobile.trim() || !password.trim()) {
+      Alert.alert('Missing Fields', 'All fields are required!');
+      return;
+    }
+
+    try {
+      const response = await axiosInstance.post('/auth/register', {
+        name,
+        email,
+        mobile,
+        password,
+      });
+      const token = response.data.token;
+      await AsyncStorage.setItem('token', token);
+      Alert.alert('Success', 'Registration successful!');
+    } catch (err: any) {
+      console.log(err?.response?.data || err.message);
+      Alert.alert(
+        'Registration failed',
+        err?.response?.data?.message || 'Please try again.',
+      );
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -42,11 +72,31 @@ const SignUp = () => {
               Sign Up
             </Text>
             {/* <TextInput placeholder="email" style={styles.input} /> */}
-            <CustomInput placeholder="Enter your Name" />
-            <CustomInput placeholder="Enter your email" />
-            <CustomInput placeholder="Enter your email" />
-            <CustomInput placeholder="Enter your password" type="password" />
-            <CustomButton content="Sign Up" />
+            <CustomInput
+              placeholder="Enter your Name"
+              value={name}
+              onChangeText={setName}
+            />
+            <CustomInput
+              placeholder="Enter your email"
+              value={email}
+              onChangeText={setEmail}
+            />
+            <CustomInput
+              placeholder="Enter your mobile"
+              value={mobile}
+              onChangeText={setMobile}
+            />
+            <CustomInput
+              placeholder="Enter your password"
+              type="password"
+              value={password}
+              onChangeText={setPassword}
+            />
+            <CustomButton
+              content="Sign Up"
+              onPress={() => Alert.alert('Test', 'It works')}
+            />
           </Div>
 
           <Div pt="xl" flexDir="row" alignItems="center">
