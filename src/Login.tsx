@@ -1,10 +1,4 @@
-import {
-  Alert,
-  Dimensions,
-  SafeAreaView,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import { Alert, SafeAreaView, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { Div, StatusBar, Icon, Text, ThemeProvider } from 'react-native-magnus';
 import CustomInput from './components/CustomInput';
@@ -13,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { axiosInstance } from './utils/axiosInstance';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const LoginMagnus = () => {
+const Login = () => {
   const navigation = useNavigation<any>();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -95,4 +89,4 @@ const LoginMagnus = () => {
   );
 };
 
-export default LoginMagnus;
+export default Login;

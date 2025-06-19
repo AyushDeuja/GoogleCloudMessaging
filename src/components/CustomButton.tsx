@@ -1,26 +1,26 @@
-import { View, Text, Dimensions, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { Div, Button } from 'react-native-magnus';
+import { Button } from 'react-native-magnus';
 
 interface ButtonProps {
   content: string;
   onPress?: () => void;
+  bg?: string;
 }
 
-const CustomButton = ({ content, onPress }: ButtonProps) => {
+const CustomButton = ({ content, onPress, bg = '#51E6A6' }: ButtonProps) => {
   return (
-    <TouchableOpacity>
-      <Button
-        h={'50'}
-        w={'100%'}
-        rounded={'lg'}
-        fontWeight="bold"
-        bg="#51E6A6"
-        onPress={onPress}
-      >
-        {content}
-      </Button>
-    </TouchableOpacity>
+    <Button
+      h={50}
+      w="100%"
+      rounded="lg"
+      fontWeight="bold"
+      bg={bg}
+      onPress={onPress}
+      justifyContent="center"
+      alignItems="center"
+    >
+      {content}
+    </Button>
   );
 };
 
