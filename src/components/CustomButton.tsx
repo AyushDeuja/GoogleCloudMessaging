@@ -9,13 +9,7 @@ interface ButtonProps {
 const CustomButton = ({ content }: ButtonProps) => {
   return (
     <TouchableOpacity>
-      <Button
-        h={'50'}
-        w={'100%'}
-        rounded={'lg'}
-        fontWeight="bold"
-        bg="btnColor"
-      >
+      <Button h={'50'} w={'100%'} rounded={'lg'} fontWeight="bold" bg="#51E6A6">
         {content}
       </Button>
     </TouchableOpacity>

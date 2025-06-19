@@ -4,9 +4,15 @@ import { Div, StatusBar, Text, ThemeProvider } from 'react-native-magnus';
 import CustomInput from './components/CustomInput';
 import CustomButton from './components/CustomButton';
 
+export const theme = {
+  colors: {
+    bgColor: '#5C95F8',
+    btnColor: '#51E6A6',
+  },
+};
 const SignUp = () => {
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <StatusBar backgroundColor="bgColor" barStyle="light-content" />
       <SafeAreaView style={{ flex: 1 }}>
         <Div
@@ -24,24 +30,24 @@ const SignUp = () => {
               textAlign="center"
               pb="xl"
             >
-              Login
+              Sign Up
             </Text>
             {/* <TextInput placeholder="email" style={styles.input} /> */}
             <CustomInput placeholder="Enter your email" />
             <CustomInput placeholder="Enter your password" type="password" />
-            <CustomButton content="Log In" />
+            <CustomButton content="Sign Up" />
           </Div>
 
           <Div pt="xl" flexDir="row" alignItems="center">
-            <Text color="white">New to the app?</Text>
+            <Text color="white">Already have an account?</Text>
             <Text
-              color="btnColor"
+              color="#51E6A6"
               fontWeight="bold"
               textDecorLine="underline"
               ml="5"
               onPress={() => console.log('Sign Up pressed')}
             >
-              Sign Up
+              Log In
             </Text>
           </Div>
         </Div>
