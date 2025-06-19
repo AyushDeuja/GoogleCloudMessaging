@@ -34,7 +34,7 @@ const LoginMagnus = () => {
               Login
             </Text>
             {/* <TextInput placeholder="email" style={styles.input} /> */}
-            <CustomInput placeholder="Enter your email" />
+            <CustomInput placeholder="Enter your email or mobile" />
             <CustomInput placeholder="Enter your password" type="password" />
             <CustomButton content="Log In" />
           </Div>
