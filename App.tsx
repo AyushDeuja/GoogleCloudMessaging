@@ -9,6 +9,14 @@ import Splash from './src/Splash';
 import LoginMagnus from './src/LoginMagnus';
 import SignUp from './src/SignUp';
 import Home from './src/Home'; // ➤ create this screen
+import { ThemeProvider } from 'react-native-magnus';
+
+export const theme = {
+  colors: {
+    bgColor: '#5C95F8',
+    btnColor: '#51E6A6',
+  },
+};
 
 const Stack = createNativeStackNavigator();
 
@@ -28,19 +36,21 @@ const App = () => {
   }, []);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {showSplash ? (
-          <Stack.Screen name="Splash" component={Splash} />
-        ) : (
-          <>
-            <Stack.Screen name="SignUp" component={SignUp} />
-            <Stack.Screen name="Login" component={LoginMagnus} />
-            <Stack.Screen name="Home" component={Home} />
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ThemeProvider theme={theme}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {showSplash ? (
+            <Stack.Screen name="Splash" component={Splash} />
+          ) : (
+            <>
+              <Stack.Screen name="SignUp" component={SignUp} />
+              <Stack.Screen name="Login" component={LoginMagnus} />
+              <Stack.Screen name="Home" component={Home} />
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };
 
