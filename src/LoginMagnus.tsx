@@ -1,4 +1,9 @@
-import { Dimensions, SafeAreaView, StyleSheet } from 'react-native';
+import {
+  Dimensions,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import { Div, StatusBar, Icon, Text, ThemeProvider } from 'react-native-magnus';
 import CustomInput from './components/CustomInput';
@@ -40,16 +45,21 @@ const LoginMagnus = () => {
           </Div>
 
           <Div pt="xl" flexDir="row" alignItems="center">
-            <Text color="white">New to the app?</Text>
-            <Text
-              color="btnColor"
-              fontWeight="bold"
-              textDecorLine="underline"
-              ml="5"
-              onPress={() => console.log('Sign Up pressed')}
+            <Text color="white">Already have an account?</Text>
+
+            <TouchableOpacity
+              onPress={() => console.log('SignUp pressed')}
+              activeOpacity={0.6}
             >
-              Sign Up
-            </Text>
+              <Text
+                ml="5"
+                fontWeight="bold"
+                textDecorLine="underline"
+                color="#51E6A6"
+              >
+                Sign Up
+              </Text>
+            </TouchableOpacity>
           </Div>
         </Div>
       </SafeAreaView>

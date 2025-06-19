@@ -1,4 +1,8 @@
-import { SafeAreaView } from 'react-native';
+import {
+  SafeAreaView,
+  TouchableHighlight,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import { Div, StatusBar, Text, ThemeProvider } from 'react-native-magnus';
 import CustomInput from './components/CustomInput';
@@ -33,24 +37,29 @@ const SignUp = () => {
               Sign Up
             </Text>
             {/* <TextInput placeholder="email" style={styles.input} /> */}
-            <CustomInput placeholder="Enter your name" />
+            <CustomInput placeholder="Enter your Name" />
             <CustomInput placeholder="Enter your email" />
-            <CustomInput placeholder="Enter your mobile" />
+            <CustomInput placeholder="Enter your email" />
             <CustomInput placeholder="Enter your password" type="password" />
             <CustomButton content="Sign Up" />
           </Div>
 
           <Div pt="xl" flexDir="row" alignItems="center">
             <Text color="white">Already have an account?</Text>
-            <Text
-              color="#51E6A6"
-              fontWeight="bold"
-              textDecorLine="underline"
-              ml="5"
-              onPress={() => console.log('Sign Up pressed')}
+
+            <TouchableOpacity
+              onPress={() => console.log('LogIn pressed')}
+              activeOpacity={0.6}
             >
-              Log In
-            </Text>
+              <Text
+                ml="5"
+                fontWeight="bold"
+                textDecorLine="underline"
+                color="#51E6A6"
+              >
+                Log In
+              </Text>
+            </TouchableOpacity>
           </Div>
         </Div>
       </SafeAreaView>
