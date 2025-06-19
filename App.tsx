@@ -4,6 +4,7 @@ import {
   NotificationListener,
   requestUserPermission,
 } from './src/NotificationHandler';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginMagnus from './src/LoginMagnus';
 import Splash from './src/Splash';
 import SignUp from './src/SignUp';
@@ -26,14 +27,14 @@ const App = () => {
   }, []);
 
   return (
-    // <View style={styles.container}>
-    //   <Text style={styles.title}>React Native Firebase Push Notification</Text>
-    //   <Text style={styles.subtitle}>FCM is now initialized 🎉</Text>
-    // </View>
-    // <Splice />
-    // <LoginMagnus />
-    // showSplash ? <Splash /> : <LoginMagnus />
-    <SignUp />
+      {/* <View style={styles.container}>
+      <Text style={styles.title}>React Native Firebase Push Notification</Text>
+      <Text style={styles.subtitle}>FCM is now initialized 🎉</Text>
+    </View>
+    <Splice />
+    <LoginMagnus />
+    showSplash ? <Splash /> : <LoginMagnus /> */}
+      <SignUp />
   );
 };
 
