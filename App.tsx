@@ -6,6 +6,7 @@ import {
 } from './src/NotificationHandler';
 import LoginMagnus from './src/LoginMagnus';
 import Splash from './src/Splash';
+import SignUp from './src/SignUp';
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -31,7 +32,8 @@ const App = () => {
     // </View>
     // <Splice />
     // <LoginMagnus />
-    showSplash ? <Splash /> : <LoginMagnus />
+    // showSplash ? <Splash /> : <LoginMagnus />
+    <SignUp />
   );
 };
 

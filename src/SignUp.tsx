@@ -1,19 +1,12 @@
-import { Dimensions, SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import React from 'react';
-import { Div, StatusBar, Icon, Text, ThemeProvider } from 'react-native-magnus';
+import { Div, StatusBar, Text, ThemeProvider } from 'react-native-magnus';
 import CustomInput from './components/CustomInput';
 import CustomButton from './components/CustomButton';
 
-export const theme = {
-  colors: {
-    bgColor: '#5C95F8',
-    btnColor: '#51E6A6',
-  },
-};
-
-const LoginMagnus = () => {
+const SignUp = () => {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider>
       <StatusBar backgroundColor="bgColor" barStyle="light-content" />
       <SafeAreaView style={{ flex: 1 }}>
         <Div
@@ -57,16 +50,4 @@ const LoginMagnus = () => {
   );
 };
 
-export default LoginMagnus;
-
-// const styles = StyleSheet.create({
-//   input: {
-//     width: Dimensions.get('window').width - 30,
-//     height: 40,
-//     borderRadius: 8,
-//     paddingHorizontal: 12,
-//     fontSize: 15,
-//     backgroundColor: 'white',
-//     color: 'black',
-//   },
-// });
+export default SignUp;
