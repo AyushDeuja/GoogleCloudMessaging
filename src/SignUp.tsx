@@ -36,6 +36,7 @@ const SignUp = () => {
       });
       const token = response.data.token;
       await AsyncStorage.setItem('token', token);
+      console.log('✅ Navigating to Home');
       navigation.navigate('Home');
     } catch (err: any) {
       console.log(err?.response?.data || err.message);
