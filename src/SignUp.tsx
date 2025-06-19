@@ -3,7 +3,7 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Div, StatusBar, Text, ThemeProvider } from 'react-native-magnus';
 import CustomInput from './components/CustomInput';
 import CustomButton from './components/CustomButton';
@@ -15,6 +15,11 @@ export const theme = {
   },
 };
 const SignUp = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <ThemeProvider theme={theme}>
       <StatusBar backgroundColor="bgColor" barStyle="light-content" />
