@@ -1,7 +1,7 @@
 import React from 'react';
 import { Div, Image, StatusBar, ThemeProvider } from 'react-native-magnus';
 
-const Splice = () => {
+const Splash = () => {
   return (
     <ThemeProvider>
       <StatusBar backgroundColor="#5C95F8" barStyle="light-content" />
@@ -25,4 +25,4 @@ const Splice = () => {
   );
 };
 
-export default Splice;
+export default Splash;

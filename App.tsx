@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import {
   NotificationListener,
   requestUserPermission,
 } from './src/NotificationHandler';
 import LoginMagnus from './src/LoginMagnus';
-import Splice from './src/Splice';
+import Splash from './src/Splash';
 
 const App = () => {
+  const [showSplash, setShowSplash] = useState(true);
   useEffect(() => {
     // Ask user for permission and get FCM token
     requestUserPermission();
@@ -16,13 +17,21 @@ const App = () => {
     NotificationListener();
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     // <View style={styles.container}>
     //   <Text style={styles.title}>React Native Firebase Push Notification</Text>
     //   <Text style={styles.subtitle}>FCM is now initialized 🎉</Text>
     // </View>
     // <Splice />
-    <LoginMagnus />
+    // <LoginMagnus />
+    showSplash ? <Splash /> : <LoginMagnus />
   );
 };
 

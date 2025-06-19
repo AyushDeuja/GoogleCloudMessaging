@@ -11,7 +11,6 @@ const CustomButton = ({ content }: ButtonProps) => {
     <TouchableOpacity>
       <Button
         h={'50'}
-        px={'10'}
         w={'100%'}
         rounded={'lg'}
         fontWeight="bold"

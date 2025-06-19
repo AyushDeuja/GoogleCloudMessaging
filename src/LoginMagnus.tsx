@@ -29,7 +29,7 @@ const LoginMagnus = () => {
             fontSize="lg"
             // color="black"
           /> */}
-          <Div w={'100%'} px={10}>
+          <Div w={'100%'} px={20}>
             <Text
               color="white"
               fontWeight="bold"
