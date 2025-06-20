@@ -22,6 +22,18 @@ const Home = () => {
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(true);
 
+  const fetchTodos = async () => {
+    try {
+      setLoading(true);
+      const res = await axiosInstance.get('/todos');
+      setTodos(res.data);
+    } catch (err) {
+      Alert.alert('Error', 'Failed to fetch todos');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const logout = async () => {
     await AsyncStorage.removeItem('token');
     navigation.reset({
@@ -29,6 +41,10 @@ const Home = () => {
       routes: [{ name: 'Login' }],
     });
   };
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
 
   const renderItem = ({ item }: { item: any }) => (
     <Div
