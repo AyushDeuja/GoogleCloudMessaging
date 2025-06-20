@@ -34,6 +34,24 @@ const Home = () => {
     }
   };
 
+  const addTodo = async () => {
+    if (!title.trim()) {
+      Alert.alert('Validation', 'Title is required');
+      return;
+    }
+    try {
+      await axiosInstance.post('/todos', {
+        title,
+        description,
+      });
+      setTitle('');
+      setDescription('');
+      fetchTodos();
+    } catch (err) {
+      Alert.alert('Error', 'Failed to add todo');
+    }
+  };
+
   const logout = async () => {
     await AsyncStorage.removeItem('token');
     navigation.reset({
@@ -83,7 +101,7 @@ const Home = () => {
           value={description}
           onChangeText={setDescription}
         />
-        <CustomButton content="Add Todo" />
+        <CustomButton content="Add Todo" onPress={addTodo} />
 
         <Div mt="xl" flex={1}>
           {loading ? (
