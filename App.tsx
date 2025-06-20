@@ -15,6 +15,7 @@ import Home from './src/Home';
 
 import { ThemeProvider } from 'react-native-magnus';
 import Login from './src/Login';
+import AddTodoScreen from './src/AddTodoScreen';
 
 export const theme = {
   colors: {
@@ -76,6 +77,7 @@ const App = () => {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="AddTodo" component={AddTodoScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

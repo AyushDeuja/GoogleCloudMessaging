@@ -1,25 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import {
-  View,
-  FlatList,
-  Text,
-  ActivityIndicator,
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Div } from 'react-native-magnus';
-import CustomButton from './components/CustomButton';
-import CustomInput from './components/CustomInput';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Div, Text } from 'react-native-magnus';
 import { axiosInstance } from './utils/axiosInstance';
+import TodoList from './components/TodoList';
+import CustomButton from './components/CustomButton';
+import Feather from 'react-native-vector-icons/Feather';
 
 const Home = () => {
   const navigation = useNavigation<any>();
   const [todos, setTodos] = useState<any[]>([]);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(true);
 
   const fetchTodos = async () => {
@@ -34,97 +25,49 @@ const Home = () => {
     }
   };
 
-  const addTodo = async () => {
-    if (!title.trim()) {
-      Alert.alert('Validation', 'Title is required');
-      return;
-    }
+  const deleteTodo = async (id: number) => {
     try {
-      await axiosInstance.post('/todos', {
-        title,
-        description,
-      });
-      setTitle('');
-      setDescription('');
+      await axiosInstance.delete(`/todos/${id}`);
       fetchTodos();
-    } catch (err) {
-      Alert.alert('Error', 'Failed to add todo');
+    } catch {
+      Alert.alert('Error', 'Failed to delete todo');
     }
+  };
+
+  const editTodo = (item: any) => {
+    Alert.alert('Edit pressed', item.title);
   };
 
   const logout = async () => {
     await AsyncStorage.removeItem('token');
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Login' }],
-    });
+    navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
   };
 
   useEffect(() => {
     fetchTodos();
   }, []);
 
-  const renderItem = ({ item }: { item: any }) => (
-    <Div
-      bg="white"
-      p="md"
-      m="sm"
-      rounded="xl"
-      shadow="sm"
-      borderColor="gray300"
-      borderWidth={1}
-    >
-      <Text style={{ fontWeight: 'bold' }}>{item.title}</Text>
-      {item.description ? (
-        <Text style={{ color: 'gray' }}>{item.description}</Text>
-      ) : null}
-    </Div>
-  );
-
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      style={{ flex: 1, backgroundColor: '#F0F4F8' }}
-    >
-      <Div flex={1} p="lg">
-        <Text style={{ fontSize: 22, fontWeight: 'bold', marginBottom: 10 }}>
+    <View style={{ flex: 1, backgroundColor: '#F0F4F8' }}>
+      <Div p="lg" row justifyContent="space-between" alignItems="center">
+        <Text fontSize={22} fontWeight="bold">
           Your Todos
         </Text>
-
-        <CustomInput
-          placeholder="Title"
-          value={title}
-          onChangeText={setTitle}
-        />
-        <CustomInput
-          placeholder="Description (optional)"
-          value={description}
-          onChangeText={setDescription}
-        />
-        <CustomButton content="Add Todo" onPress={addTodo} />
-
-        <Div mt="xl" flex={1}>
-          {loading ? (
-            <ActivityIndicator size="large" color="#5C95F8" />
-          ) : (
-            <FlatList
-              data={todos}
-              keyExtractor={item => item.id.toString()}
-              renderItem={renderItem}
-              ListEmptyComponent={
-                <Text style={{ textAlign: 'center', marginTop: 20 }}>
-                  No todos found.
-                </Text>
-              }
-            />
-          )}
-        </Div>
-
-        <Div mt="lg">
-          <CustomButton content="Logout" onPress={logout} bg="red" />
-        </Div>
+        <TouchableOpacity onPress={() => navigation.navigate('AddTodo')}>
+          <Feather name="plus-circle" size={26} color="#51E6A6" />
+        </TouchableOpacity>
       </Div>
-    </KeyboardAvoidingView>
+
+      {loading ? (
+        <ActivityIndicator size="large" color="#5C95F8" />
+      ) : (
+        <TodoList todos={todos} onDelete={deleteTodo} onEdit={editTodo} />
+      )}
+
+      <Div p="lg">
+        <CustomButton content="Logout" onPress={logout} bg="red" />
+      </Div>
+    </View>
   );
 };
 
