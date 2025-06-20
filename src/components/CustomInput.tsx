@@ -1,7 +1,7 @@
-// CustomInput.tsx
 import React, { useState } from 'react';
-import { Dimensions, TouchableOpacity } from 'react-native';
-import { Input, Icon } from 'react-native-magnus';
+import { TouchableOpacity } from 'react-native';
+import { Input } from 'react-native-magnus';
+import Feather from 'react-native-vector-icons/Feather';
 
 interface InputProps {
   placeholder?: string;
@@ -35,11 +35,9 @@ const CustomInput = ({
       suffix={
         isPassword && (
           <TouchableOpacity onPress={() => setShowPassword(prev => !prev)}>
-            <Icon
-              name={showPassword ? 'eye' : 'eye-invisible'}
-              // name="eye"
-              fontFamily={'AntDesign'}
-              fontSize="lg"
+            <Feather
+              name={showPassword ? 'eye' : 'eye-off'}
+              size={20}
               color="black"
             />
           </TouchableOpacity>

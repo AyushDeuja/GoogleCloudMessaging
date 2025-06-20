@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Div, Text } from 'react-native-magnus';
 import { axiosInstance } from './utils/axiosInstance';
@@ -35,7 +35,7 @@ const Home = () => {
   };
 
   const editTodo = (item: any) => {
-    Alert.alert('Edit pressed', item.title);
+    navigation.navigate('EditTodo', { todo: item });
   };
 
   const logout = async () => {
@@ -43,9 +43,12 @@ const Home = () => {
     navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
   };
 
-  useEffect(() => {
-    fetchTodos();
-  }, []);
+  // Refresh todos whenever Home screen is focused (e.g., after add/edit)
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchTodos();
+    }, []),
+  );
 
   return (
     <View style={{ flex: 1, backgroundColor: '#F0F4F8' }}>
