@@ -56,7 +56,7 @@ const SignUp = () => {
       });
 
       const token = response.data.token;
-      await AsyncStorage.setItem('token', token); // optional
+      await AsyncStorage.setItem('token', token);
       await saveTokenWithBiometrics(token);
       navigation.navigate('Home');
     } catch (err: any) {

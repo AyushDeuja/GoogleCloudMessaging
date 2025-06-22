@@ -58,7 +58,7 @@ const Login = () => {
 
       if (credentials) {
         const token = credentials.password;
-        await AsyncStorage.setItem('token', token); // optional
+        await AsyncStorage.setItem('token', token);
         navigation.navigate('Home');
       } else {
         Alert.alert('Authentication failed', 'Biometric login cancelled.');
